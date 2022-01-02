@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: voyagerss_api
+  main:
+    allow-bean-definition-overriding: true
+
+db-voyagerss:
+  driver-class-name: com.mysql.cj.jdbc.Driver
+  url: jdbc:mysql://voyagerss.com:3306/voyagerss?characterEncoding=utf8&serverTimezone=Asia/Seoul&useUnicode=true&createDatabaseIfNotExist=true
+  username: voyagerss
+  password: 900601
+
+#error / warn / debug / info / trace
+logging:
+  level:
+    sql: error
+    p6psy.p6spy: info
+    root: info
+  file:
+    path: /var/log/${spring.application.name}-develop
+    name: ${logging.file.path}/${spring.application.name}.log

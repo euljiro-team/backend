@@ -1,0 +1,32 @@
+{
+  "groups": [
+    {
+      "name": "db-voyagerss",
+      "type": "com.core.config.database.VoyagerssDatabaseProperties",
+      "sourceType": "com.core.config.database.VoyagerssDatabaseProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "db-voyagerss.driver-class-name",
+      "type": "java.lang.String",
+      "sourceType": "com.core.config.database.VoyagerssDatabaseProperties"
+    },
+    {
+      "name": "db-voyagerss.password",
+      "type": "java.lang.String",
+      "sourceType": "com.core.config.database.VoyagerssDatabaseProperties"
+    },
+    {
+      "name": "db-voyagerss.url",
+      "type": "java.lang.String",
+      "sourceType": "com.core.config.database.VoyagerssDatabaseProperties"
+    },
+    {
+      "name": "db-voyagerss.username",
+      "type": "java.lang.String",
+      "sourceType": "com.core.config.database.VoyagerssDatabaseProperties"
+    }
+  ],
+  "hints": []
+}

@@ -1,0 +1,15 @@
+--- #dev 환경
+spring:
+  profiles:
+    group:
+      "develop" : "default, security,develop-core"
+
+--- #api 환경
+
+spring:
+  profiles:
+    group:
+      "release" : "default, security,release-core"
+
+
+
