@@ -1,0 +1,12 @@
+server:
+  port: 44001
+  forward-headers-strategy: native
+  servlet:
+    context-path: /api
+
+springdoc:
+  version: '1.0.0'
+  api-docs:
+    path: /v3/api-docs
+    groups:
+      enabled: false

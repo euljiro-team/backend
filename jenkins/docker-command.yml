@@ -1,0 +1,7 @@
+#  docker run -p 8221:8080 -v /var/run/docker.sock:/var/run/docker.sock --name jenkins_8221 jenkins/jenkins:lts
+
+#  # jenkins docker in docker
+#   docker run -p 8221:8080 -v /var/run/docker.sock:/var/run/docker.sock --name jenkins getintodevops/jenkins-withdocker:lts
+#
+#  # mysql
+#   docker run --name mysql_3307 -e MYSQL_ROOT_PASSWORD=<password> -d -p 3307:3306 mysql:latest

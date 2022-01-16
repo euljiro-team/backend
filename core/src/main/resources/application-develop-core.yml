@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: euljiro_api
+  main:
+    allow-bean-definition-overriding: true
+  jpa:
+    hibernate:
+#      ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+
+#    properties:
+#      javax:
+#        persistence:
+#          schema-generation:
+#            scripts:
+#              create-target=create:
+#                sql:datasource:
+#    initialization-mode: always
+#            create-source: metadata
+#            scripts:
+#              action: create
+
+db-euljiro:
+  driver-class-name: com.mysql.cj.jdbc.Driver
+  url: jdbc:mysql://voyagerss.com:3306/euljiro?characterEncoding=utf8&serverTimezone=Asia/Seoul&useUnicode=true&createDatabaseIfNotExist=true
+  username: develop_username
+  password: develop_password
+
+devtools: #jsp파일 서버 재시작 없이 바로 적용하기  spring-boot-devtools
+  livereload:
+    enabled: true
+
+#error / warn / debug / info / trace
+logging:
+  level:
+    sql: error
+    p6psy.p6spy: info
+    root: info
+  file:
+    path: /var/log/${spring.application.name}-develop
+    name: ${logging.file.path}/${spring.application.name}.log
+
