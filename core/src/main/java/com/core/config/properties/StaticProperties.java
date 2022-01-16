@@ -21,7 +21,4 @@ public class StaticProperties {
 
     public static long BASE_ORGANIZATION_ID= 87L;
 
-
-    @Value("${ecos-api-key}")    public String ECOS_API_KEY;
-    @Value("${ecos-api-url}")    public String ECOS_API_URL;
 }

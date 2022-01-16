@@ -16,6 +16,3 @@ spring:
   profiles:
     group:
       "release" : "default, security,release-core, release-api, secret"
-
-
-

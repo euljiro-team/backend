@@ -37,6 +37,7 @@ public class Account implements java.io.Serializable {
     private String password= "";
 
     @Column(name = "email", length = 512, unique = true)
+    @NotNull
     @Size(max = 512)
     private String email= "";
 

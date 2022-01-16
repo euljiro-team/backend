@@ -23,7 +23,7 @@ spring:
 
 db-euljiro:
   driver-class-name: com.mysql.cj.jdbc.Driver
-  url: jdbc:mysql://euljiro.com:3306/euljiro?characterEncoding=utf8&serverTimezone=Asia/Seoul&useUnicode=true&createDatabaseIfNotExist=true
+  url: jdbc:mysql://voyagerss.com:3306/euljiro?characterEncoding=utf8&serverTimezone=Asia/Seoul&useUnicode=true&createDatabaseIfNotExist=true
   username: develop_username
   password: develop_password
 
