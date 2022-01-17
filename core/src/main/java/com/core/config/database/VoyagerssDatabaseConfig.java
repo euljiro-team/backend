@@ -70,7 +70,8 @@ public class VoyagerssDatabaseConfig extends HikariConfig {
 
         return builder.dataSource(euljiroDataSource())
             .properties(properties)
-            .packages(new String[]{"com.core.euljiro.*.domain"})
+            .packages(new String[]{"com.core.euljiro.*.domain",
+                    "com.core.euljiro.*.center"})
             .persistenceUnit("euljiroEntityManager")
             .build();
     }
