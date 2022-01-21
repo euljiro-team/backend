@@ -1,5 +1,6 @@
 package com.core.euljiro.domain;
 
+import com.core.euljiro.domain.pk.MembershipPK;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name = "membership")
+@IdClass(MembershipPK.class)
 public class Membership implements Serializable {
 
     private static final long serialVersionUID = 1L;
