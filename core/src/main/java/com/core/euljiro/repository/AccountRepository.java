@@ -21,4 +21,10 @@ public interface AccountRepository extends JpaRepository<Account, Integer>, JpaS
     Account findByEmail(String email);
 
     Page<Account> findByUsernameContains(String accountName, Pageable pageable);
+
+//    Optional<Account> findByAccessToken(String token);
+//
+//    Account findByRefreshToken(String refreshTokenStr);
+
+    boolean existsByRefreshToken(String refreshToken);
 }

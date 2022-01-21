@@ -11,4 +11,6 @@ import java.util.List;
 @Repository
 public interface AccountRoleRepository extends JpaRepository<AccountRole, Integer>, JpaSpecificationExecutor<AccountRole> {
     List<AccountRole> findByRoleType(EnumMaster.RoleType roleType);
+
+    List<AccountRole> findByAccount_AccountId(Integer accountId);
 }
