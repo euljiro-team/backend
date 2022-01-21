@@ -40,7 +40,7 @@ import static com.api.oauth.repository.OAuth2AuthorizationRequestBasedOnCookieRe
 @RequiredArgsConstructor
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
-    @Autowired private JwtTokenProvider jwtTokenProvider;
+    @Autowired      private JwtTokenProvider jwtTokenProvider;
     @Autowired    private AccountRepository accountRepository;
     @Autowired    private AccountRoleRepository accountRoleRepository;
     @Autowired    private AccountSnsRepository accountSnsRepository;

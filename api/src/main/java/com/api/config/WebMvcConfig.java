@@ -13,12 +13,7 @@ class WebMvcConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:8080" ,
-                        "http://en9doors.com:8080",
-                        "http://en9door.com:8080",
-
-                        "http://localhost",
-                        "http://en9doors.com",
-                        "http://en9door.com"
+                        "http://localhost"
                         )
                 .allowedMethods(
                         HttpMethod.OPTIONS.name(),
