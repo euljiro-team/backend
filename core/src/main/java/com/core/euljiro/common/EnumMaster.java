@@ -1,4 +1,4 @@
-package com.core.euljiro;
+package com.core.euljiro.common;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

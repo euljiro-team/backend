@@ -2,8 +2,8 @@ package com.core.config.converter;
 
 import com.core.config.exception.CommonException;
 import com.core.config.exception.CommonExceptionType;
-import com.core.euljiro.EnumMaster.PagingType;
-import com.core.euljiro.EnumMaster.SortType;
+import com.core.euljiro.common.EnumMaster.PagingType;
+import com.core.euljiro.common.EnumMaster.SortType;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 

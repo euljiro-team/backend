@@ -23,10 +23,6 @@ public class AccountController {
         return accountService.save(vO).toString();
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@Valid @NotNull @PathVariable("id") Integer id) {
-        accountService.delete(id);
-    }
 
     @PutMapping("/{id}")
     public void update(@Valid @NotNull @PathVariable("id") Integer id,
@@ -39,8 +35,4 @@ public class AccountController {
         return accountService.getById(id);
     }
 
-    @GetMapping
-    public Page<AccountDTO> query(@Valid AccountDTO vO) {
-        return accountService.query(vO);
-    }
 }

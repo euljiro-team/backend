@@ -1,48 +1,92 @@
 package com.core.euljiro.domain;
 
-import lombok.Data;
+
+import com.core.euljiro.common.EnumMaster;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Date;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "account_sns")
-public class AccountSns implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+public class AccountSns {
+    @JsonIgnore
     @Id
-    @Column(name = "account_sns_id", nullable = false)
+    @Column(name = "account_sns_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long accountSnsId;
 
-    @Column(name = "access_token")
-    private String accessToken;
-
-    @Column(name = "created_at")
-    private Date createdAt;
-
-    @Column(name = "email_verified_yn", nullable = false)
-    private String emailVerifiedYn;
-
-    @Column(name = "profile_image_url", nullable = false)
-    private String profileImageUrl;
-
-    @Column(name = "provider_type", nullable = false)
-    private String providerType;
-
-    @Column(name = "refresh_token", nullable = false)
-    private String refreshToken;
+    @Column(name = "user_id", length = 64, unique = true)
+    @NotNull
+    @Size(max = 64)
+    private String userId;
 
     @Column(name = "sns_email")
     private String snsEmail;
 
-    @Column(name = "user_id", nullable = false)
-    private String userId;
+    @Column(name = "access_token", length = 256)
+    @Size(max = 256)
+    private String accessToken;
 
-    @Column(name = "account_id")
-    private Integer accountId;
+    @Column(name = "refresh_token", length = 256)
+    @NotNull
+    @Size(max = 256)
+    private String refreshToken;
+
+    @Column(name = "email_verified_yn", length = 1)
+    @NotNull
+    @Size(min = 1, max = 1)
+    private String emailVerifiedYn;
+
+    @Column(name = "profile_image_url", length = 512)
+    @NotNull
+    @Size(max = 512)
+    private String profileImageUrl;
+
+    @Column(name = "provider_type", length = 20)
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    private EnumMaster.ProviderType providerType;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+    @JsonManagedReference
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "account_id")
+    private Account account;
+
+    public AccountSns(
+            @NotNull @Size(max = 64) String userId,
+            @NotNull String snsEmail,
+            @NotNull @Size(max = 1) String emailVerifiedYn,
+            @NotNull @Size(max = 512) String profileImageUrl,
+            @NotNull EnumMaster.ProviderType providerType,
+            @NotNull String accessToken,
+            @NotNull @Size(max = 256) String refreshToken,
+            Account account
+    ) {
+        this.userId = userId;
+        this.snsEmail = snsEmail;
+
+        this.emailVerifiedYn = emailVerifiedYn;
+        this.profileImageUrl = profileImageUrl != null ? profileImageUrl : "";
+        this.providerType = providerType;
+
+        this.accessToken = accessToken;
+        this.refreshToken = refreshToken;
+        this.account = account;
+    }
 
 }
