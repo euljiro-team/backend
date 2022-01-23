@@ -1,0 +1,96 @@
+# Security OAuth
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            scope:
+              - email
+              - profile
+          kakao:
+            clientAuthenticationMethod: post
+            authorizationGrantType: authorization_code
+            redirectUri: "{baseUrl}/{action}/oauth2/code/{registrationId}"
+            scope:
+              - plusfriends
+              - profile
+              - account_email
+              - phone_number
+            clientName: Kakao
+#        facebook:
+#          clientId: '{페이스북 client-id}'
+#          clientSecret: '{페이스북 client-secret}'
+#          scope:
+#            - email
+#            - public_profile
+#        naver:
+#          clientId: '{네이버 client-id}'
+#          clientSecret: '{네이버 client-secret}'
+#          clientAuthenticationMethod: post
+#          authorizationGrantType: authorization_code
+#          redirectUri: "{baseUrl}/{action}/oauth2/code/{registrationId}"
+#          scope:
+#            - nickname
+#            - email
+#            - profile_image
+#          clientName: Naver
+        # Provider 설정
+        provider:
+          naver:
+            authorizationUri: https://nid.naver.com/oauth2.0/authorize
+            tokenUri: https://nid.naver.com/oauth2.0/token
+            userInfoUri: https://openapi.naver.com/v1/nid/me
+            userNameAttribute: response
+          kakao:
+            authorizationUri: https://kauth.kakao.com/oauth/authorize
+            tokenUri: https://kauth.kakao.com/oauth/token
+            userInfoUri: https://kapi.kakao.com/v2/user/me
+            userNameAttribute: id
+
+# cors 설정
+cors:
+  allowed-origins: 'http://localhost:8080,http://localhost'
+  allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+  allowed-headers: '*'
+  max-age: 3600
+
+# jwt secret key 설정
+jwt.secret: 'euljiro3dkasodmskNpdkaslepaskadlseSOE'
+
+# 토큰 관련 secret Key 및 RedirectUri 설정
+app:
+  auth:
+    tokenExpiry: 1800000  # millisecond
+    refreshTokenExpiry: 604800000
+  oauth2:
+    authorizedRedirectUris:
+      - http://localhost:8080/oauth/redirect
+      - http://localhost/oauth/redirect
+      - http://localhost/oauth/redirect
+  oauth:
+    kakao:
+      authorizationUri: https://kauth.kakao.com/oauth/authorize
+      tokenUri: https://kauth.kakao.com/oauth/token
+      userInfoUri: https://kapi.kakao.com/v2/user/me
+      userNameAttribute: id
+    naver:
+      authorizationUri: https://nid.naver.com/oauth2.0/authorize
+      tokenUri: https://nid.naver.com/oauth2.0/token
+      userInfoUri: https://openapi.naver.com/v1/nid/me
+      userNameAttribute: response
+  payment:
+    kakao:
+      clientId: 22
+      clientSecret: 22
+    toss:
+      clientId: 22
+      clientSecret: 22
+    naver:
+      clientId: 22
+      clientSecret: 22
+    authorizedRedirectUris:
+      - http://localhost:8080/payment/redirect
+      - http://localhost/payment/redirect
+      - http://localhost/payment/redirect
+

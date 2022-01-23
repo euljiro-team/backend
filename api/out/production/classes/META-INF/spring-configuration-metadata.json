@@ -1,0 +1,152 @@
+{
+  "groups": [
+    {
+      "name": "app",
+      "type": "com.api.config.properties.AppProperties",
+      "sourceType": "com.api.config.properties.AppProperties"
+    },
+    {
+      "name": "app.auth",
+      "type": "com.api.config.properties.AppProperties$Auth",
+      "sourceType": "com.api.config.properties.AppProperties"
+    },
+    {
+      "name": "app.oauth",
+      "type": "com.api.config.properties.AppProperties$OAuth",
+      "sourceType": "com.api.config.properties.AppProperties"
+    },
+    {
+      "name": "app.oauth.kakao",
+      "type": "com.api.config.properties.AppProperties$OAuth2Ready",
+      "sourceType": "com.api.config.properties.AppProperties$OAuth"
+    },
+    {
+      "name": "app.oauth2",
+      "type": "com.api.config.properties.AppProperties$OAuth2",
+      "sourceType": "com.api.config.properties.AppProperties"
+    },
+    {
+      "name": "app.payment",
+      "type": "com.api.config.properties.AppProperties$Payment",
+      "sourceType": "com.api.config.properties.AppProperties"
+    },
+    {
+      "name": "app.payment.kakao",
+      "type": "com.api.config.properties.AppProperties$Registration",
+      "sourceType": "com.api.config.properties.AppProperties$Payment"
+    },
+    {
+      "name": "app.payment.naver",
+      "type": "com.api.config.properties.AppProperties$Registration",
+      "sourceType": "com.api.config.properties.AppProperties$Payment"
+    },
+    {
+      "name": "app.payment.toss",
+      "type": "com.api.config.properties.AppProperties$Registration",
+      "sourceType": "com.api.config.properties.AppProperties$Payment"
+    },
+    {
+      "name": "cors",
+      "type": "com.api.config.properties.CorsProperties",
+      "sourceType": "com.api.config.properties.CorsProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "app.auth.refresh-token-expiry",
+      "type": "java.lang.Long",
+      "sourceType": "com.api.config.properties.AppProperties$Auth"
+    },
+    {
+      "name": "app.auth.token-expiry",
+      "type": "java.lang.Long",
+      "sourceType": "com.api.config.properties.AppProperties$Auth"
+    },
+    {
+      "name": "app.auth.token-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.api.config.properties.AppProperties$Auth"
+    },
+    {
+      "name": "app.oauth.kakao.authorization-uri",
+      "type": "java.lang.String",
+      "sourceType": "com.api.config.properties.AppProperties$OAuth2Ready"
+    },
+    {
+      "name": "app.oauth.kakao.token-uri",
+      "type": "java.lang.String",
+      "sourceType": "com.api.config.properties.AppProperties$OAuth2Ready"
+    },
+    {
+      "name": "app.oauth.kakao.user-info-uri",
+      "type": "java.lang.String",
+      "sourceType": "com.api.config.properties.AppProperties$OAuth2Ready"
+    },
+    {
+      "name": "app.oauth.kakao.user-name-attribute",
+      "type": "java.lang.String",
+      "sourceType": "com.api.config.properties.AppProperties$OAuth2Ready"
+    },
+    {
+      "name": "app.oauth2.authorized-redirect-uris",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.api.config.properties.AppProperties$OAuth2"
+    },
+    {
+      "name": "app.payment.authorized-redirect-uris",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.api.config.properties.AppProperties$Payment"
+    },
+    {
+      "name": "app.payment.kakao.client-id",
+      "type": "java.lang.String",
+      "sourceType": "com.api.config.properties.AppProperties$Registration"
+    },
+    {
+      "name": "app.payment.kakao.client-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.api.config.properties.AppProperties$Registration"
+    },
+    {
+      "name": "app.payment.naver.client-id",
+      "type": "java.lang.String",
+      "sourceType": "com.api.config.properties.AppProperties$Registration"
+    },
+    {
+      "name": "app.payment.naver.client-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.api.config.properties.AppProperties$Registration"
+    },
+    {
+      "name": "app.payment.toss.client-id",
+      "type": "java.lang.String",
+      "sourceType": "com.api.config.properties.AppProperties$Registration"
+    },
+    {
+      "name": "app.payment.toss.client-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.api.config.properties.AppProperties$Registration"
+    },
+    {
+      "name": "cors.allowed-headers",
+      "type": "java.lang.String",
+      "sourceType": "com.api.config.properties.CorsProperties"
+    },
+    {
+      "name": "cors.allowed-methods",
+      "type": "java.lang.String",
+      "sourceType": "com.api.config.properties.CorsProperties"
+    },
+    {
+      "name": "cors.allowed-origins",
+      "type": "java.lang.String",
+      "sourceType": "com.api.config.properties.CorsProperties"
+    },
+    {
+      "name": "cors.max-age",
+      "type": "java.lang.Long",
+      "sourceType": "com.api.config.properties.CorsProperties"
+    }
+  ],
+  "hints": []
+}

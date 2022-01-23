@@ -1,3 +1,19 @@
+# IntelliJ project files
+target
+build
+*~
+*.log
+.classpath
+.project
+*.ipr
+*.iws
+*.iml
+.settings
+.git
+.svn
+*.class
+*.bak
+
 # Compiled class file
 *.class
 
@@ -9,7 +25,7 @@
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
-
+ 
 # Package Files #
 *.jar
 *.war

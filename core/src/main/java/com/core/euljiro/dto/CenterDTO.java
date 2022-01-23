@@ -1,18 +1,26 @@
 package com.core.euljiro.dto;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Data
-public class CenterDTO implements Serializable {
-    private static final long serialVersionUID = 1L;
-    private Integer centerId;
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class CenterDTO {
 
-    private String address;
-
+    //private Integer centerId;
+    @NotEmpty
     private String name;
+
+    @NotEmpty
+    private String address;
 
     private String operatingHour;
 
