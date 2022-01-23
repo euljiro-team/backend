@@ -30,7 +30,7 @@ import java.util.Properties;
 @EnableJpaRepositories(
     entityManagerFactoryRef = "euljiroEntityManagerFactory",
     transactionManagerRef = "euljiroTransactionManager",
-    basePackages = {"com.core.euljiro.*.repository"}
+    basePackages = {"com.core.euljiro.repository"}
 )
 @MapperScan(basePackages = "com.core.euljiro", annotationClass = org.apache.ibatis.annotations.Mapper.class, sqlSessionFactoryRef = "euljiroSqlSessionFactory")
 public class VoyagerssDatabaseConfig extends HikariConfig {
@@ -70,7 +70,7 @@ public class VoyagerssDatabaseConfig extends HikariConfig {
 
         return builder.dataSource(euljiroDataSource())
             .properties(properties)
-            .packages(new String[]{"com.core.euljiro.*.domain"})
+            .packages(new String[]{"com.core.euljiro.domain"})
             .persistenceUnit("euljiroEntityManager")
             .build();
     }
@@ -91,7 +91,7 @@ public class VoyagerssDatabaseConfig extends HikariConfig {
     ) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(euljiroDataSource());
-        sqlSessionFactoryBean.setTypeAliasesPackage("com.core.euljiro.*.domain");
+        sqlSessionFactoryBean.setTypeAliasesPackage("com.core.euljiro.domain");
 //        sqlSessionFactoryBean.setConfigLocation(
 //                applicationContext.getResource("classpath:/mybatis/homs/mybatis-config.xml")
 //        );
