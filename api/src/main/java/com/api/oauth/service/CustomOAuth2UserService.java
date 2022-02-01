@@ -73,12 +73,12 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 "Y",
                 userInfo.getImageUrl(),
                 providerType,
-                EnumMaster.RoleType.EN9DOOR_STUDENT,
+                EnumMaster.RoleType.of("GUEST"),
                 now,
                 now
         );
         accountRepository.saveAndFlush(account);
-        AccountRole accountRole = new AccountRole(EnumMaster.RoleType.EN9DOOR_STUDENT, account);
+        AccountRole accountRole = new AccountRole(EnumMaster.RoleType.of("GUEST"), account);
         accountRoleRepository.saveAndFlush(accountRole);
         return account;
     }

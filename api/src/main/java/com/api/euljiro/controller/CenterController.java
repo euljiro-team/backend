@@ -3,6 +3,7 @@ package com.api.euljiro.controller;
 import com.core.euljiro.domain.Center;
 import com.core.euljiro.dto.CenterDTO;
 import com.core.euljiro.repository.CenterRepository;
+import com.core.euljiro.service.CenterService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -17,6 +18,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+import java.util.Optional;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
@@ -26,6 +30,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 @RequiredArgsConstructor
 public class CenterController {
 
+    private final CenterService centerService;
     private final CenterRepository centerRepository;
     private final ModelMapper modelMapper;
 
@@ -39,18 +44,44 @@ public class CenterController {
         return ResponseEntity.created(mvcLinkBuilder.toUri()).body(modelMapper.map(newCenter, CenterDTO.class));
     }
 
-    // 센터조회
+    // 센터리스트
     @GetMapping
     public ResponseEntity listCenter(Pageable pageable,
                                      PagedResourcesAssembler<Center> assembler) {
         Page<Center> page = centerRepository.findAll(pageable);
         PagedModel pagedModel = assembler.toModel(page, center -> new EntityModel<Center>(center)
                                             .add(linkTo(CenterController.class)
-                                            .slash(center.getCenterId())
+                                                .slash(center.getCenterId())
                                                     .withSelfRel()));
 
         return ResponseEntity.ok(pagedModel);
     }
+
+    // 센터조회
+    @GetMapping("/{id}")
+   public ResponseEntity getCenter(@Valid @NotNull @PathVariable("id") Integer id) {
+        Optional<Center> center = centerRepository.findById(id);
+
+        if(!center.isPresent())
+            return ResponseEntity.notFound().build();
+        //EntityModel<Center> centerEntityModel = new EntityModel<Center>(center);
+
+        return ResponseEntity.ok(center);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@Valid @NotNull @PathVariable("id") Integer id) {
+        Optional<Center> center = centerRepository.findById(id);
+
+        if(center.isPresent())
+            centerService.delete(id);
+        else
+            return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(center);
+    }
+
 
 //    @Autowired
 //    private CenterService centerService;

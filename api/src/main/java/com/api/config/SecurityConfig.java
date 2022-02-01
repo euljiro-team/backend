@@ -11,7 +11,6 @@ import com.api.oauth.repository.OAuth2AuthorizationRequestBasedOnCookieRepositor
 import com.api.oauth.service.CustomOAuth2UserService;
 import com.api.oauth.service.CustomUserDetailsService;
 import com.api.oauth.token.JwtTokenProvider;
-import com.core.euljiro.common.EnumMaster;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -78,8 +77,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/ed/common/**").permitAll()
 
                     .antMatchers("/account/**").authenticated()
-                    .antMatchers("/teacher/**").hasAnyAuthority(EnumMaster.RoleType.EN9DOOR_TEACHER.getCode())
-                    .antMatchers("/manager/**").hasAnyAuthority(EnumMaster.RoleType.EN9DOOR_MANAGER.getCode())
+//                    .antMatchers("/teacher/**").hasAnyAuthority(EnumMaster.RoleType.EN9DOOR_TEACHER.getCode())
+//                    .antMatchers("/manager/**").hasAnyAuthority(EnumMaster.RoleType.EN9DOOR_MANAGER.getCode())
 //                    .anyRequest().authenticated()
                 .and()
                     .oauth2Login()

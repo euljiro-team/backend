@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="65b70d89-e096-4795-91c7-c51483175f42" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/api/euljiro/resource/CenterResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/test/java/com/api/euljiro/TestControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.6.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.6.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.6.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -19,14 +19,15 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/api/config/WebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/api/config/WebMvcConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/api/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/api/config/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/main/java/com/api/euljiro/controller/CenterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/api/euljiro/controller/CenterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/api/oauth/service/CustomOAuth2UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/api/oauth/service/CustomOAuth2UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/core/config/database/VoyagerssDatabaseConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/core/config/database/VoyagerssDatabaseConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/core/euljiro/domain/Center.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/core/euljiro/domain/Center.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/core/euljiro/common/EnumMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/core/euljiro/common/EnumMaster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/core/euljiro/domain/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/core/euljiro/domain/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/core/euljiro/domain/Membership.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/core/euljiro/domain/Membership.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/core/euljiro/domain/pk/MembershipPK.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/core/euljiro/dto/CenterDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/core/euljiro/dto/CenterDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/resources/application-local-core.yml" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/resources/application-local-core.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,13 +74,6 @@
                 <item name="backend_ejr" type="f1a62948:ProjectNode" />
                 <item name="api" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="application" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="backend_ejr" type="f1a62948:ProjectNode" />
-                <item name="api" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
@@ -92,6 +86,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
+        <option value="JUnit4 Test Class" />
+        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -121,12 +118,24 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/api/src/test/java" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.core.euljiro.common.platform" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.api.euljiro" />
+      <recent name="com.core.euljiro.domain" />
     </key>
   </component>
   <component name="RunManager" selected="Application.APIApplication">
@@ -145,27 +154,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="backend-ejr:api [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/api" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="bootRun" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="backend-ejr:api [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -178,27 +166,6 @@
         <option name="taskNames">
           <list>
             <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="backend-ejr:api [classes]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/api" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="classes" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -229,42 +196,68 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="backend-ejr:core [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/core" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
+    <configuration name="AccountTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend_ejr.core.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.core.euljiro.domain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.core.euljiro.domain" />
+      <option name="MAIN_CLASS_NAME" value="com.core.euljiro.domain.AccountTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend_ejr.api.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.api.euljiro.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.api.euljiro" />
+      <option name="MAIN_CLASS_NAME" value="com.api.euljiro.TestControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestControllerTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend_ejr.api.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.api.euljiro.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.api.euljiro" />
+      <option name="MAIN_CLASS_NAME" value="com.api.euljiro.TestControllerTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <list>
       <item itemvalue="Application.APIApplication" />
       <item itemvalue="Gradle.backend-ejr:api [clean]" />
-      <item itemvalue="Gradle.backend-ejr:core [build]" />
       <item itemvalue="Gradle.backend-ejr:api [build]" />
-      <item itemvalue="Gradle.backend-ejr:api [bootRun]" />
-      <item itemvalue="Gradle.backend-ejr:api [classes]" />
+      <item itemvalue="JUnit.AccountTest.test" />
+      <item itemvalue="JUnit.TestControllerTest" />
+      <item itemvalue="JUnit.TestControllerTest.test" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.backend-ejr:api [build]" />
         <item itemvalue="Gradle.backend-ejr:api [clean]" />
-        <item itemvalue="Gradle.backend-ejr:api [classes]" />
-        <item itemvalue="Gradle.backend-ejr:api [bootRun]" />
-        <item itemvalue="Gradle.backend-ejr:core [build]" />
+        <item itemvalue="JUnit.TestControllerTest" />
+        <item itemvalue="JUnit.TestControllerTest.test" />
+        <item itemvalue="JUnit.AccountTest.test" />
+        <item itemvalue="Gradle.backend-ejr:api [build]" />
       </list>
     </recent_temporary>
   </component>

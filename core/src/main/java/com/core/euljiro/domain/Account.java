@@ -4,6 +4,7 @@ import com.core.euljiro.common.EnumMaster;
 import com.core.euljiro.dto.AccountDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -94,7 +95,6 @@ public class Account implements java.io.Serializable {
     @JsonBackReference
     @OneToMany(mappedBy = "account" ,cascade = CascadeType.ALL)
     private List<AccountSns> accountSnsList;
-
 
     public Account(AccountDTO accountDto) {
        this.username = accountDto.getUsername();

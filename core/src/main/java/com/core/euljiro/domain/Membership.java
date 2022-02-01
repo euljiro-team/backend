@@ -1,6 +1,5 @@
 package com.core.euljiro.domain;
 
-import com.core.euljiro.domain.pk.MembershipPK;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -9,7 +8,6 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name = "membership")
-@IdClass(MembershipPK.class)
 public class Membership implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -19,11 +17,9 @@ public class Membership implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer mmbrshpId;
 
-    @Id
     @Column(name = "mmbrshp_code", nullable = false)
     private String mmbrshpCode;
 
-    @Id
     @Column(name = "center_id", nullable = false)
     private Integer centerId;
 
