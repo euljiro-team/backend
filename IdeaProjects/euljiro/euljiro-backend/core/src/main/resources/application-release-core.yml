@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: euljiro_api
+  main:
+    allow-bean-definition-overriding: true
+
+db-euljiro:
+  driver-class-name: com.mysql.cj.jdbc.Driver
+  url: jdbc:mysql://euljiro.com:3306/euljiro?characterEncoding=utf8&serverTimezone=Asia/Seoul&useUnicode=true&createDatabaseIfNotExist=true
+  username: release_username
+  password: release_password
+
+#error / warn / debug / info / trace
+logging:
+  level:
+    sql: error
+    p6psy.p6spy: info
+    root: info
+  file:
+    path: /var/log/${spring.application.name}-develop
+    name: ${logging.file.path}/${spring.application.name}.log

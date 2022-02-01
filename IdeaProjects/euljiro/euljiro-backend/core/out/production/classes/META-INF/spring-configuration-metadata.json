@@ -1,0 +1,32 @@
+{
+  "groups": [
+    {
+      "name": "db-euljiro",
+      "type": "com.core.config.database.VoyagerssDatabaseProperties",
+      "sourceType": "com.core.config.database.VoyagerssDatabaseProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "db-euljiro.driver-class-name",
+      "type": "java.lang.String",
+      "sourceType": "com.core.config.database.VoyagerssDatabaseProperties"
+    },
+    {
+      "name": "db-euljiro.password",
+      "type": "java.lang.String",
+      "sourceType": "com.core.config.database.VoyagerssDatabaseProperties"
+    },
+    {
+      "name": "db-euljiro.url",
+      "type": "java.lang.String",
+      "sourceType": "com.core.config.database.VoyagerssDatabaseProperties"
+    },
+    {
+      "name": "db-euljiro.username",
+      "type": "java.lang.String",
+      "sourceType": "com.core.config.database.VoyagerssDatabaseProperties"
+    }
+  ],
+  "hints": []
+}

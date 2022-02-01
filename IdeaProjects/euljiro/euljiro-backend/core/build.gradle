@@ -1,0 +1,34 @@
+plugins {
+    id 'org.springframework.boot'
+    id 'maven-publish' // maven-publish 플러그인 추가
+}
+apply plugin: "com.ewerk.gradle.plugins.querydsl"
+
+repositories {
+    mavenCentral()
+}
+
+bootJar { enabled = false }
+jar { enabled = true }
+
+dependencies {
+}
+
+def querydslGenratedSrc = "$buildDir/generated/queryDsl"
+querydsl {
+    library = "com.querydsl:querydsl-apt"
+    jpa = true
+    querydslSourcesDir = querydslGenratedSrc
+}
+compileQuerydsl {
+    options.annotationProcessorPath = configurations.querydsl
+}
+configurations {
+    querydsl.extendsFrom compileClasspath
+}
+sourceSets {
+    main.java.srcDirs querydslGenratedSrc
+}
+clean.doLast {
+    file(querydslGenratedSrc).deleteDir()
+}

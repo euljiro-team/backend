@@ -1,0 +1,3 @@
+rootProject.name = 'backend_ejr'
+include 'core'
+include 'api'
