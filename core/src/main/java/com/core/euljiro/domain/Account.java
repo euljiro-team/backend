@@ -137,13 +137,4 @@ public class Account implements java.io.Serializable {
         this.accountId = id;
     }
 
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        ArrayList<GrantedAuthority> auth = new ArrayList<>();
-//        String prefix = "ROLE_";
-//        String postfix = this.getRole().name();
-//        auth.add(new SimpleGrantedAuthority(prefix + postfix));
-//        return auth;
-//    }
-
 }
