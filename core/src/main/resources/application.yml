@@ -1,3 +1,11 @@
+--- # local
+--- #local 환경
+spring:
+  profiles:
+    group:
+      "local" : "default, security, local-core"
+
+
 --- #dev 환경
 spring:
   profiles:
