@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 public class AccountRole {
     private static final long serialVersionUID = 1L;
 
+
     @Id
     @Column(name = "account_role_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +29,10 @@ public class AccountRole {
 
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "center_id")
+    private Center center;
 
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
