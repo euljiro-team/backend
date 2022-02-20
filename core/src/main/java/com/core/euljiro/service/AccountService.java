@@ -9,6 +9,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -23,6 +24,8 @@ public class AccountService {
     @Autowired
     private AccountRepositorySupport accountRepositorySupport;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     //    @Override
 //    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
@@ -35,9 +38,17 @@ public class AccountService {
     }
 
     @Transactional
-    public Account signin(AccountDTO vO) {
-        Account account = new Account(vO);
+    public Account signUp(AccountDTO accountDTO) { // 회원가입
+        Account account = Account.createAccount(accountDTO, passwordEncoder);;
+        validateDuplicateEmail(account);
         return accountRepository.save(account);
+    }
+
+    public void validateDuplicateEmail(Account account) { // 중복된 이메일인지 확인
+        Account findAccount = accountRepository.findByEmail(account.getEmail());
+        if(findAccount != null) {
+            throw new IllegalStateException("이미 가입된 메일주소입니다.");
+        }
     }
 
     public Account save(AccountDTO vO) {

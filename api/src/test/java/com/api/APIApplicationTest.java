@@ -1,4 +1,4 @@
-package com.core;
+package com.api;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,13 +7,10 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {CoreApplication.class})
+@SpringBootTest
 @ActiveProfiles("local")
-public class CoreApplicationTests {
+public class APIApplicationTest {
 
     @Test
-    public void contextLoads(){
-
-    }
-
+    public void contextLoads(){}
 }

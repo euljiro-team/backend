@@ -4,6 +4,7 @@ package com.core.euljiro.dto;
 import com.core.euljiro.common.EnumMaster;
 import com.core.euljiro.domain.Account;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -11,7 +12,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @Data
+@NoArgsConstructor
 public class AccountDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 

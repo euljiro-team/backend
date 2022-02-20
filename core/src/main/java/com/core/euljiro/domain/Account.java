@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -23,14 +24,15 @@ public class Account implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "account_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "account_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer accountId;
 
-    @Column(name = "USER_ID", length = 64, unique = true)
-    @NotNull
+    @Column(name = "USER_ID", length = 64)
+    //@NotNull
     @Size(max = 64)
     private String userId = "";
+
     @Column(name = "username")
     private String username= "";
 
@@ -73,7 +75,7 @@ public class Account implements java.io.Serializable {
     private String accessToken;
 
     @Column(name = "refresh_token", length = 256)
-    @NotNull
+    //@NotNull
     @Size(max = 256)
     private String refreshToken;
 
@@ -85,16 +87,16 @@ public class Account implements java.io.Serializable {
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(name = "MODIFIED_AT")
-    @NotNull
+    //@NotNull
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
     @JsonBackReference
     @OneToMany(mappedBy = "account" ,cascade = CascadeType.ALL)
     private List<AccountRole> accountRoles;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "account" ,cascade = CascadeType.ALL)
-    private List<AccountSns> accountSnsList;
+    //@JsonBackReference
+    //@OneToMany(mappedBy = "account" ,cascade = CascadeType.ALL)
+    //private List<AccountSns> accountSnsList;
 
     public Account(AccountDTO accountDto) {
        this.username = accountDto.getUsername();
@@ -103,6 +105,15 @@ public class Account implements java.io.Serializable {
        this.koreanName = accountDto.getKoreanName();
        this.englishName = accountDto.getEnglishName();
        this.phone = accountDto.getPhone();
+    }
+
+    public static Account createAccount(AccountDTO accountDTO, PasswordEncoder passwordEncoder) {
+        Account account = new Account();
+        account.username = accountDTO.getUsername();
+        account.email = accountDTO.getEmail();
+        account.password = passwordEncoder.encode(accountDTO.getPassword());
+        account.phone = accountDTO.getPhone();
+        return account;
     }
 
     public Account(
@@ -136,5 +147,14 @@ public class Account implements java.io.Serializable {
     public Account(Integer id) {
         this.accountId = id;
     }
+
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        ArrayList<GrantedAuthority> auth = new ArrayList<>();
+//        String prefix = "ROLE_";
+//        String postfix = this.getRole().name();
+//        auth.add(new SimpleGrantedAuthority(prefix + postfix));
+//        return auth;
+//    }
 
 }

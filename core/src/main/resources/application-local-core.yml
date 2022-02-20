@@ -38,6 +38,6 @@ logging:
     p6psy.p6spy: info
     root: info
   file:
-    path: /var/log/${spring.application.name}-develop
-    name: ${logging.file.path}/${spring.application.name}.log
+ ##   path: /var/log/${spring.application.name}-develop
+ ##   name: ${logging.file.path}/${spring.application.name}.log
 

@@ -1,22 +1,16 @@
-package com.api;
+package com.core;
 
-import com.api.config.properties.AppProperties;
-import com.api.config.properties.CorsProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-@SpringBootApplication(scanBasePackages = {  "com.core", "com.api" })
+@SpringBootApplication(scanBasePackages = { "com.core" })
 @EnableScheduling
-@EnableConfigurationProperties({
-        CorsProperties.class,
-        AppProperties.class
-})
 @ConfigurationPropertiesScan
-public class APIApplication {
+public class CoreApplication {
     public static void main(String[] args) {
-        SpringApplication.run(APIApplication.class, args);
+        SpringApplication.run(CoreApplication.class, args);
     }
 }
