@@ -34,13 +34,14 @@ public class MetaTableController {
         metaTableService.update(id, vO);
     }
 
-    @GetMapping("/{id}")
-    public MetaTableDTO getById(@Valid @NotNull @PathVariable("id") String id) {
-        return metaTableService.getById(id);
-    }
-
-    @GetMapping
-    public Page<MetaTableDTO> query(@Valid MetaTableDTO vO) {
-        return metaTableService.query(vO);
-    }
+//    @GetMapping("/{id}")
+//    public MetaTableDTO getById(@Valid @NotNull @PathVariable("id") String id) {
+//        return metaTableService.getById(id);
+//    }
+//
+//
+//    @GetMapping
+//    public Page<MetaTableDTO> query(@Valid MetaTableDTO vO) {
+//        return metaTableService.query(vO);
+//    }
 }
