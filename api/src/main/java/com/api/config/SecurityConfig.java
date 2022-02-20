@@ -2,6 +2,8 @@ package com.api.config;
 
 import com.api.config.properties.AppProperties;
 import com.api.config.properties.CorsProperties;
+import com.api.euljiro.handler.LoginAccessDeniedHandler;
+import com.api.euljiro.handler.LoginSuccessHandler;
 import com.api.oauth.exception.RestAuthenticationEntryPoint;
 import com.api.oauth.filter.TokenAuthenticationFilter;
 import com.api.oauth.handler.OAuth2AuthenticationFailureHandler;
@@ -51,22 +53,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder());
+
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                     .cors()
-                .and()
-                    .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                //.and()
+                    //.sessionManagement()
+                    //.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                     .csrf().disable()
-                    .formLogin().disable()
-                    .httpBasic().disable()
+                    //.httpBasic().disable()
                     .exceptionHandling()
-                    .authenticationEntryPoint(new RestAuthenticationEntryPoint())
-                    .accessDeniedHandler(tokenAccessDeniedHandler)
+                    //.authenticationEntryPoint(new RestAuthenticationEntryPoint())
+                    //.accessDeniedHandler(tokenAccessDeniedHandler)
+                    .accessDeniedHandler(loginAccessDeniedHandler())
                 .and()
                     .authorizeRequests()
                     .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
@@ -75,27 +78,42 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/oauth/**").permitAll()
                     .antMatchers("/ed/google").permitAll()
                     .antMatchers("/ed/common/**").permitAll()
-
-                    .antMatchers("/account/**").authenticated()
+                    .antMatchers("/account/signUp").permitAll()
+                    .antMatchers("/account/login").permitAll()
+                    .anyRequest().authenticated()
+                ;
 //                    .antMatchers("/teacher/**").hasAnyAuthority(EnumMaster.RoleType.EN9DOOR_TEACHER.getCode())
 //                    .antMatchers("/manager/**").hasAnyAuthority(EnumMaster.RoleType.EN9DOOR_MANAGER.getCode())
 //                    .anyRequest().authenticated()
-                .and()
-                    .oauth2Login()
-                    .authorizationEndpoint()
-                    .baseUri("/oauth2/authorization")
-                    .authorizationRequestRepository(oAuth2AuthorizationRequestBasedOnCookieRepository())
-                .and()
-                    .redirectionEndpoint()
-                    .baseUri("/*/oauth2/code/*")
-                .and()
-                    .userInfoEndpoint()
-                    .userService(oAuth2UserService)
-                .and()
-                    .successHandler(oAuth2AuthenticationSuccessHandler())
-                    .failureHandler(oAuth2AuthenticationFailureHandler());
+//                .and()
+//                    .oauth2Login()
+//                    .authorizationEndpoint()
+//                    .baseUri("/oauth2/authorization")
+//                    .authorizationRequestRepository(oAuth2AuthorizationRequestBasedOnCookieRepository())
+//                .and()
+//                    .redirectionEndpoint()
+//                    .baseUri("/*/oauth2/code/*")
+//                .and()
+//                    .userInfoEndpoint()
+//                    .userService(oAuth2UserService)
+//                .and()
+//                    .successHandler(oAuth2AuthenticationSuccessHandler())
+//                    .failureHandler(oAuth2AuthenticationFailureHandler());
+        http.formLogin()
+                .loginProcessingUrl("/account/login")
+                .successHandler(loginSuccessHandler());
 
-        http.addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+        //http.addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+    }
+
+    @Bean
+    public LoginAccessDeniedHandler loginAccessDeniedHandler() {
+        return new LoginAccessDeniedHandler();
+    }
+
+    @Bean
+    public LoginSuccessHandler loginSuccessHandler() {
+        return new LoginSuccessHandler();
     }
 
     /*
@@ -135,13 +153,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /*
     * Oauth 인증 성공 핸들러
     * */
-    @Bean
+    /*@Bean
     public OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler() {
         return new OAuth2AuthenticationSuccessHandler(
                 appProperties,
                 oAuth2AuthorizationRequestBasedOnCookieRepository()
         );
-    }
+    }*/
 
     /*
      * Oauth 인증 실패 핸들러
