@@ -75,6 +75,11 @@ public class AccountService {
                 .map(account -> toDTO(account));
     }
 
+    public AccountDTO getAccountDTOByUserId(String userId) {
+        Account sourse = accountRepository.findByUserId(userId);
+        return toDTO(sourse);
+    }
+
 //        public Page<AccountDTO> getAccountWithRolesAndNameLike(EnumMaster.RoleType roleType, String accountName, Pageable pageable) {
 //            return accountRepositorySupport.getAccountWithRolesAndNameLike(roleType, accountName, pageable);
 //        }

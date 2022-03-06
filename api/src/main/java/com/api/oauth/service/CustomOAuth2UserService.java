@@ -18,6 +18,8 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -60,7 +62,9 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 savedAccount = createUser(userInfo, providerType);
             }
         }
-        return UserPrincipal.create(savedAccount, user.getAttributes());
+
+        List<AccountRole> savedAccountRoleList = accountRoleRepository.findByAccount_Email(userInfo.getEmail());
+        return UserPrincipal.create(savedAccount, user.getAttributes(), savedAccountRoleList);
     }
 
     private Account createUser(OAuth2UserInfo userInfo, EnumMaster.ProviderType providerType) {
@@ -73,7 +77,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 "Y",
                 userInfo.getImageUrl(),
                 providerType,
-                EnumMaster.RoleType.of("GUEST"),
+                EnumMaster.RoleType.GUEST,
                 now,
                 now
         );

@@ -75,8 +75,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/oauth/**").permitAll()
                     .antMatchers("/ed/google").permitAll()
                     .antMatchers("/ed/common/**").permitAll()
+                    .antMatchers("/account/signUp").permitAll()
+                    .antMatchers("/account/**").permitAll()
+                    .antMatchers("/account/login").permitAll()
+                    .anyRequest().authenticated()
 
-                    .antMatchers("/account/**").authenticated()
 //                    .antMatchers("/teacher/**").hasAnyAuthority(EnumMaster.RoleType.EN9DOOR_TEACHER.getCode())
 //                    .antMatchers("/manager/**").hasAnyAuthority(EnumMaster.RoleType.EN9DOOR_MANAGER.getCode())
 //                    .anyRequest().authenticated()
@@ -94,6 +97,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .successHandler(oAuth2AuthenticationSuccessHandler())
                     .failureHandler(oAuth2AuthenticationFailureHandler());
+
+//                    .loginProcessingUrl("/account/login")
+//                    .successHandler(loginSuccessHandler());
+
+
+        http.addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+    }
+
+    @Bean
+    public LoginAccessDeniedHandler loginAccessDeniedHandler() {
+        return new LoginAccessDeniedHandler();
+    }
 
         http.addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

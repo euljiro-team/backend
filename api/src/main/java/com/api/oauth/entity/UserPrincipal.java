@@ -2,12 +2,14 @@ package com.api.oauth.entity;
 
 import com.core.euljiro.common.EnumMaster;
 import com.core.euljiro.domain.Account;
+import com.core.euljiro.domain.AccountRole;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.oidc.OidcIdToken;
 import org.springframework.security.oauth2.core.oidc.OidcUserInfo;
@@ -16,7 +18,9 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -84,20 +88,26 @@ public class UserPrincipal implements OAuth2User, UserDetails, OidcUser {
         return null;
     }
 
-    public static UserPrincipal create(Account account) {
+
+    public static UserPrincipal create(Account account, List<AccountRole> accountRoleList) {
+        Collection<GrantedAuthority> authorities =
+                accountRoleList.stream()
+                        .map(accountRole -> new SimpleGrantedAuthority(accountRole.getRoleType().getCode()))
+                        .collect(Collectors.toList());
+
         return new UserPrincipal(
                 account.getUserId(),
                 account.getPassword(),
                 account.getProviderType(),
-                Arrays.asList(
-                        new SimpleGrantedAuthority[]{new SimpleGrantedAuthority(account.getRole().getCode()), new SimpleGrantedAuthority(EnumMaster.RoleType.USER.getCode())} )
+                authorities
         );
     }
 
-    public static UserPrincipal create(Account account, Map<String, Object> attributes) {
-        UserPrincipal userPrincipal = create(account);
+    public static UserPrincipal create(Account account, Map<String, Object> attributes, List<AccountRole> accountRoleList) {
+        UserPrincipal userPrincipal = create(account, accountRoleList);
         userPrincipal.setAttributes(attributes);
 
         return userPrincipal;
     }
+
 }

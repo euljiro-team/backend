@@ -13,4 +13,6 @@ public interface AccountRoleRepository extends JpaRepository<AccountRole, Intege
     List<AccountRole> findByRoleType(EnumMaster.RoleType roleType);
 
     List<AccountRole> findByAccount_AccountId(Integer accountId);
+
+    List<AccountRole> findByAccount_Email(String email);
 }
