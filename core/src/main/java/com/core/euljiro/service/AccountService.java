@@ -1,6 +1,8 @@
 package com.core.euljiro.service;
 
+import com.core.euljiro.common.EnumMaster;
 import com.core.euljiro.domain.Account;
+import com.core.euljiro.domain.AccountRole;
 import com.core.euljiro.dto.AccountDTO;
 import com.core.euljiro.querydsl.AccountRepositorySupport;
 import com.core.euljiro.repository.AccountRepository;
@@ -13,6 +15,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -27,11 +31,6 @@ public class AccountService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    //    @Override
-//    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-//        Account account = accountRepository.findByUsername(userName).orElseThrow(() -> new UsernameNotFoundException(userName));
-//        return new AccountAdapter(account);
-//    }
     public AccountDTO getUser(String userId) {
         Account sourse = accountRepository.findByUserId(userId);
         return toDTO(sourse);
@@ -39,8 +38,19 @@ public class AccountService {
 
     @Transactional
     public Account signUp(AccountDTO accountDTO) { // 회원가입
-        Account account = Account.createAccount(accountDTO, passwordEncoder);;
+        Account account = Account.createAccount(accountDTO, passwordEncoder);
         validateDuplicateEmail(account);
+
+        List<AccountRole> accountRoleList = new ArrayList<>();
+        accountDTO.getAccountRoles().stream().forEach(role -> {
+            AccountRole accountRole = new AccountRole();
+            accountRole.setAccount(account);
+            accountRole.setRoleType(role);
+            accountRoleList.add(accountRole);
+        });
+
+        account.setAccountRoles(accountRoleList);
+
         return accountRepository.save(account);
     }
 

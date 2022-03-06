@@ -34,6 +34,10 @@ public class AccountRole {
     @JoinColumn(name = "account_id")
     private Account account;
 
+    public AccountRole(EnumMaster.RoleType roleType) {
+        this.roleType = roleType;
+    }
+
     public AccountRole(EnumMaster.RoleType roleType, Account account) {
         this.roleType = roleType;
         this.account = account;

@@ -65,6 +65,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     //.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                     .csrf().disable()
+                    .formLogin()
+                    .loginProcessingUrl("/account/login")
+                    .successHandler(loginSuccessHandler())
+                .and()
                     //.httpBasic().disable()
                     .exceptionHandling()
                     //.authenticationEntryPoint(new RestAuthenticationEntryPoint())
@@ -79,6 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/ed/google").permitAll()
                     .antMatchers("/ed/common/**").permitAll()
                     .antMatchers("/account/signUp").permitAll()
+                    .antMatchers("/account/center/signUp").permitAll()
                     .antMatchers("/account/login").permitAll()
                     .anyRequest().authenticated()
                 ;
@@ -99,9 +104,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .and()
 //                    .successHandler(oAuth2AuthenticationSuccessHandler())
 //                    .failureHandler(oAuth2AuthenticationFailureHandler());
-        http.formLogin()
-                .loginProcessingUrl("/account/login")
-                .successHandler(loginSuccessHandler());
 
         //http.addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

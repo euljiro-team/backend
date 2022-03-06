@@ -113,6 +113,8 @@ public class Account implements java.io.Serializable {
         account.email = accountDTO.getEmail();
         account.password = passwordEncoder.encode(accountDTO.getPassword());
         account.phone = accountDTO.getPhone();
+        account.status = EnumMaster.Status.INACTIVE;
+
         return account;
     }
 

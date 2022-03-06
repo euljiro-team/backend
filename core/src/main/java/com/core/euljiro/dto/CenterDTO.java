@@ -16,7 +16,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class CenterDTO {
 
-    //private Integer centerId;
+    private Integer centerId;
+
     @NotEmpty
     private String name;
 

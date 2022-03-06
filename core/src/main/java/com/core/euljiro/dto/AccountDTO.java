@@ -6,6 +6,7 @@ import com.core.euljiro.domain.Account;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -37,7 +38,6 @@ public class AccountDTO implements Serializable {
     private LocalDateTime expired;
     private String snsAccount;
     private EnumMaster.Status status;
-
 
     public AccountDTO(String name) {
         this.username = name;
