@@ -46,7 +46,6 @@ public class CourseController {
 
     @PostMapping
     public ResponseEntity<CourseDTO> save(@RequestBody CourseDTO courseDTO) {
-        log.debug("######CourseDTO: " + courseDTO.toString());
         Course course = courseService.save(courseDTO);
         WebMvcLinkBuilder mvcLinkBuilder = linkTo(CourseController.class).slash(course.getCrsId());
         return ResponseEntity.created(mvcLinkBuilder.toUri()).body(modelMapper.map(course, CourseDTO.class));

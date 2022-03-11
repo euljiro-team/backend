@@ -1,5 +1,6 @@
 package com.api.euljiro.controller;
 
+import com.core.euljiro.common.BaseTimeEntity;
 import com.core.euljiro.domain.Course;
 import com.core.euljiro.dto.CourseDTO;
 import com.core.euljiro.repository.CourseRepository;
@@ -19,6 +20,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.lang.reflect.InvocationTargetException;
+import java.time.LocalDate;
 
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -58,14 +60,16 @@ public class CourseControllerTest {
         CourseDTO vo = CourseDTO.builder()
                 .crsDwk(1) // 수업요일
                 .thcrId(111)
-                .crsEndDt("2022-02-24")
+                .crsEndDt(LocalDate.parse("2022-02-24"))
                 .crsHr(50)
                 .crsId(12345L)
                 .crsNm("명상요가")
-                .crsStrtDt("2022-02-24")
+                .crsStrtDt(LocalDate.parse("2022-02-24"))
                 .crsStrtHh("14")
                 .crsStrtMi("30")
                 .mbrNum(20)
+                .cntrId(1231)
+                .regNum(1)
                 .build();
         //when
         courseController.save(vo);
