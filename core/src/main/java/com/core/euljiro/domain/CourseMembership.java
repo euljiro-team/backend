@@ -10,16 +10,16 @@ import java.io.Serializable;
 
 @Data
 @Entity
-@Table(name = "course_membership")
+@Table(name = "crs_mmbrshp")
 public class CourseMembership implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "course_membership_id", nullable = false)
-    private Integer courseMembershipId;
+    @Column(name = "crs_id", nullable = false)
+    private Long crsId;
 
-    @Column(name = "course_course_id", nullable = false)
-    private Integer courseCourseId;
+    @Column(name = "mmbrshp_id", nullable = false)
+    private Integer mmbrshpId;
 
 }

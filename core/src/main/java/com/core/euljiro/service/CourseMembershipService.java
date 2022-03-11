@@ -16,11 +16,11 @@ public class CourseMembershipService {
     @Autowired
     private CourseMembershipRepository courseMembershipRepository;
 
-    public Integer save(CourseMembershipDTO vO) {
+    public Long save(CourseMembershipDTO vO) {
         CourseMembership bean = new CourseMembership();
         BeanUtils.copyProperties(vO, bean);
         bean = courseMembershipRepository.save(bean);
-        return bean.getCourseMembershipId();
+        return bean.getCrsId();
     }
 
     public void delete(Integer id) {
