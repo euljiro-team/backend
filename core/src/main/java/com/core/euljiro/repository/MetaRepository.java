@@ -18,6 +18,6 @@ public interface MetaRepository extends JpaRepository<Meta,String> {
             "p.fstCrtId like %:#{#requestDto.fstCrtId}% and " +
             "p.lstMdfId like %:#{#requestDto.lstMdfId}% " )
         //List<Meta> findMultiMetas (String word, String comments, String fstCrtId, String lstMdfID );
-    List<Meta> findMultiMetas(@Param("requestDto") MetaGetRequestDto requestDto);
+    List<Meta> findMultiMetas(@Param("requestDto") MetaGetRequestDto dto);
 
 }

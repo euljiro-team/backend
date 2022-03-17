@@ -6,6 +6,7 @@ import com.core.euljiro.dto.meta.MetaUpdateRequestDto;
 import com.core.euljiro.dto.meta.MetasResponseDto;
 import com.core.euljiro.service.MetaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,24 +15,21 @@ import java.util.List;
 @RestController
 @RequestMapping("/meta")
 public class MetaController {
+
+    @Autowired
     private final MetaService metaService;
 
-    @PostMapping("/post")
+    @PostMapping
     public String save(@RequestBody MetaSaveRequestDto requestDto) throws Exception {
         return metaService.save(requestDto);
     }
 
-    @GetMapping("/get")
-    //public List<MetasResponseDto> findMultiMetas(@RequestBody MetaGetRequestDto requestDto) {
-    public List<MetasResponseDto> findMultiMetas(){
-        System.out.println("$$$$$$$$$$$hi");
-        //MetaGetRequestDto requestDto = new MetaGetRequestDto();
-        //System.out.println(metaService.findMultiMetas(requestDto));
-        //return metaService.findMultiMetas(requestDto);
-        return metaService.findAllDesc();
+    @GetMapping
+    public List<MetasResponseDto> findMultiMetas(@RequestBody MetaGetRequestDto requestDto) {
+        return metaService.findMultiMetas(requestDto);
     }
 
-    @PatchMapping("/patch/{word}")
+    @PatchMapping("/{word}")
     public String update(@PathVariable String word, @RequestBody MetaUpdateRequestDto updateDto){
         return metaService.update(word, updateDto);
     }

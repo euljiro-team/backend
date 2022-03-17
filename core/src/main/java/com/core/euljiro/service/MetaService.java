@@ -38,6 +38,8 @@ public class MetaService extends Exception {
 
     @Transactional
     public List<MetasResponseDto> findMultiMetas (MetaGetRequestDto requestDto) {
+        System.out.println("$$$$$ get comments "
+                + requestDto.getComments());
         return metaRepository.findMultiMetas(requestDto)
                 .stream().map(MetasResponseDto::new).collect(Collectors.toList());
     }
