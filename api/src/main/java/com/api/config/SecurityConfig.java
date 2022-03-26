@@ -60,9 +60,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                     .cors()
-                //.and()
-                    //.sessionManagement()
-                    //.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                    .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                     .csrf().disable()
                     .formLogin()
@@ -76,20 +76,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .accessDeniedHandler(loginAccessDeniedHandler())
                 .and()
                     .authorizeRequests()
-                    .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
+//                    .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                     .antMatchers("/swagger-ui**").permitAll()
                     .antMatchers("/swagger-ui/**").permitAll()
                     .antMatchers("/oauth/**").permitAll()
-                    .antMatchers("/ed/google").permitAll()
-                    .antMatchers("/ed/common/**").permitAll()
-                    .antMatchers("/account/signUp").permitAll()
-                    .antMatchers("/account/center/signUp").permitAll()
-                    .antMatchers("/account/login").permitAll()
+                    .antMatchers("/**/*").permitAll()
                     .anyRequest().authenticated()
-                ;
-//                    .antMatchers("/teacher/**").hasAnyAuthority(EnumMaster.RoleType.EN9DOOR_TEACHER.getCode())
-//                    .antMatchers("/manager/**").hasAnyAuthority(EnumMaster.RoleType.EN9DOOR_MANAGER.getCode())
-//                    .anyRequest().authenticated()
+        ;
+
 //                .and()
 //                    .oauth2Login()
 //                    .authorizationEndpoint()
@@ -105,7 +99,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                    .successHandler(oAuth2AuthenticationSuccessHandler())
 //                    .failureHandler(oAuth2AuthenticationFailureHandler());
 
-        //http.addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean

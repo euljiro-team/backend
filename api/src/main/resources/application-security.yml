@@ -50,7 +50,7 @@ spring:
 
 # cors 설정
 cors:
-  allowed-origins: 'http://localhost:8080,http://localhost'
+  allowed-origins: 'http://localhost:8900,http://localhost'
   allowed-methods: GET,POST,PUT,DELETE,OPTIONS
   allowed-headers: '*'
   max-age: 3600
@@ -65,7 +65,7 @@ app:
     refreshTokenExpiry: 604800000
   oauth2:
     authorizedRedirectUris:
-      - http://localhost:8080/oauth/redirect
+      - http://localhost:8900/oauth/redirect
       - http://localhost/oauth/redirect
       - http://localhost/oauth/redirect
   oauth:
@@ -90,7 +90,7 @@ app:
       clientId: 22
       clientSecret: 22
     authorizedRedirectUris:
-      - http://localhost:8080/payment/redirect
+      - http://localhost:8900/payment/redirect
       - http://localhost/payment/redirect
       - http://localhost/payment/redirect
 
