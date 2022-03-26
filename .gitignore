@@ -25,7 +25,7 @@ build
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
- 
+
 # Package Files #
 *.jar
 *.war
@@ -39,7 +39,5 @@ build
 hs_err_pid*
 */build
 .idea
+./gradle
 .gradle
-.idea
-.gradle
-.idea

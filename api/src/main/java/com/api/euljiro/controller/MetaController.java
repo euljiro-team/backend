@@ -25,7 +25,13 @@ public class MetaController {
     }
 
     @GetMapping
-    public List<MetasResponseDto> findMultiMetas(@RequestBody MetaGetRequestDto requestDto) {
+    public List<MetasResponseDto> findMultiMetas() {
+        MetaGetRequestDto requestDto = MetaGetRequestDto.builder()
+                .word("")
+                .comments("")
+                .fstCrtId("")
+                .lstMdfId("")
+                .build();
         return metaService.findMultiMetas(requestDto);
     }
 

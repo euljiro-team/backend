@@ -16,6 +16,7 @@ import com.api.oauth.token.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -59,45 +60,50 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                    .cors()
-                .and()
-                    .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                    .csrf().disable()
-                    .formLogin()
-                    .loginProcessingUrl("/account/login")
-                    .successHandler(loginSuccessHandler())
-                .and()
-                    //.httpBasic().disable()
-                    .exceptionHandling()
-                    //.authenticationEntryPoint(new RestAuthenticationEntryPoint())
-                    //.accessDeniedHandler(tokenAccessDeniedHandler)
-                    .accessDeniedHandler(loginAccessDeniedHandler())
-                .and()
-                    .authorizeRequests()
+                .cors()
+            .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
+                .csrf().disable()
+                .authorizeRequests()
 //                    .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-                    .antMatchers("/swagger-ui**").permitAll()
-                    .antMatchers("/swagger-ui/**").permitAll()
-                    .antMatchers("/oauth/**").permitAll()
-                    .antMatchers("/**/*").permitAll()
-                    .anyRequest().authenticated()
-        ;
+                .antMatchers(HttpMethod.GET,"/meta").permitAll()
+                .antMatchers(HttpMethod.GET,"/oauth/**").permitAll()
+                .antMatchers("/account/center/signUp").permitAll()
+                .antMatchers("/swagger-ui**").permitAll()
+                .antMatchers("/swagger-ui/**").permitAll()
+                .antMatchers("/v3/api-docs/**").permitAll()
+//                    .antMatchers("/teacher/**").hasAnyAuthority(EnumMaster.RoleType.EN9DOOR_TEACHER.getCode())
+//                    .antMatchers("/manager/**").hasAnyAuthority(EnumMaster.RoleType.EN9DOOR_MANAGER.getCode())
+                .anyRequest().authenticated();
 
-//                .and()
-//                    .oauth2Login()
-//                    .authorizationEndpoint()
-//                    .baseUri("/oauth2/authorization")
-//                    .authorizationRequestRepository(oAuth2AuthorizationRequestBasedOnCookieRepository())
-//                .and()
-//                    .redirectionEndpoint()
-//                    .baseUri("/*/oauth2/code/*")
-//                .and()
-//                    .userInfoEndpoint()
-//                    .userService(oAuth2UserService)
-//                .and()
-//                    .successHandler(oAuth2AuthenticationSuccessHandler())
-//                    .failureHandler(oAuth2AuthenticationFailureHandler());
+        http
+                .csrf().disable()
+                .httpBasic().disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(new RestAuthenticationEntryPoint())
+                .accessDeniedHandler(tokenAccessDeniedHandler)
+            .and()
+                .oauth2Login()
+                .authorizationEndpoint()
+                .baseUri("/oauth2/authorization")
+                .authorizationRequestRepository(oAuth2AuthorizationRequestBasedOnCookieRepository())
+            .and()
+                .redirectionEndpoint()
+                .baseUri("/*/oauth2/code/*")
+            .and()
+                .userInfoEndpoint()
+                .userService(oAuth2UserService)
+            .and()
+                .successHandler(oAuth2AuthenticationSuccessHandler())
+                .failureHandler(oAuth2AuthenticationFailureHandler());
+
+        http
+            .csrf().disable()
+            .formLogin()
+            .loginProcessingUrl("/account/login")
+            .successHandler(loginSuccessHandler());
 
         http.addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
@@ -149,13 +155,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /*
     * Oauth 인증 성공 핸들러
     * */
-    /*@Bean
+    @Bean
     public OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler() {
         return new OAuth2AuthenticationSuccessHandler(
                 appProperties,
                 oAuth2AuthorizationRequestBasedOnCookieRepository()
         );
-    }*/
+    }
 
     /*
      * Oauth 인증 실패 핸들러
@@ -185,7 +191,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.httpFirewall(defaultHttpFirewall());
+        web
+                .httpFirewall(defaultHttpFirewall())
+                .ignoring()
+                .antMatchers("/swagger-ui.html")
+                .antMatchers("/swagger-ui**")
+//                .antMatchers("/meta**")
+        ;
+
     }
 
     @Bean
