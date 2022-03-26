@@ -6,21 +6,15 @@ import lombok.RequiredArgsConstructor;
 import java.util.Arrays;
 
 public class EnumMaster {
-    public enum AccountGradeType {
-        A, B, C
-    }
 
     @Getter
     @RequiredArgsConstructor
     public enum RoleType {
-//        EN9DOOR_STUDENT("EN9DOOR_STUDENT", "영어문 학생"),
-//        EN9DOOR_TEACHER("EN9DOOR_TEACHER", "영어문 선생님"),
-//        EN9DOOR_MANAGER("EN9DOOR_MANAGER", "영어문 관리자"),
-
-        SYS("ROLE_ADMIN", "시스템관리자"),
-        USER("ROLE_USER", "일반사용자"),
-        CENTER("ROLE_CENTER", "지점관리자"),
-        GUEST("GUEST", "게스트");
+        ROLE_SYS_ADMIN("ROLE_ADMIN", "시스템관리자"),
+        ROLE_CENTER_ADMIN("ROLE_CENTER", "지점관리자"),
+        ROLE_USER("ROLE_USER", "일반사용자"),
+        ROLE_TRAINER("ROLE_TRAINER", "트레이너"),
+        ROLE_GUEST("ROLE_GUEST", "게스트");
 
         private final String code;
         private final String displayName;
@@ -29,7 +23,7 @@ public class EnumMaster {
             return Arrays.stream(RoleType.values())
                     .filter(r -> r.getCode().equals(code))
                     .findAny()
-                    .orElse(GUEST);
+                    .orElse(ROLE_GUEST);
         }
     }
 

@@ -4,6 +4,9 @@ server:
   servlet:
     context-path: /api
 
+
+
+
 springdoc:
   version: '1.0.0'
   api-docs:
