@@ -23,7 +23,7 @@ spring:
 
 db-euljiro:
   driver-class-name: com.mysql.cj.jdbc.Driver
-  url: jdbc:mysql://voyagerss.com:3306/euljiro?characterEncoding=utf8&serverTimezone=Asia/Seoul&useUnicode=true&createDatabaseIfNotExist=true
+  url: jdbc:mysql://database-dev.cfgwewtahc2y.ap-northeast-2.rds.amazonaws.com:3306/euljiro?characterEncoding=utf8&serverTimezone=Asia/Seoul&useUnicode=true&createDatabaseIfNotExist=true
   username: euljiro
   password: dmfwlfh1rk
 
@@ -37,7 +37,7 @@ logging:
     sql: error
     p6psy.p6spy: info
     root: info
-  file:
+#  file:
  ##   path: /var/log/${spring.application.name}-develop
  ##   name: ${logging.file.path}/${spring.application.name}.log
 
